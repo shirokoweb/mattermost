@@ -1,0 +1,43 @@
+type: install
+name: Mattermost
+categories: ["apps/dev-and-admin-tools", "apps/popular"]
+displayName: Nextcloud
+homepage: https://github.com/HidoraSwiss/mattermost
+logo: https://github.com/HidoraSwiss/mattermost/raw/master/mattermost.png
+description: Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies, and mostly markets itself as an open-source alternative to Slack.
+ssl: true
+
+globals:
+  PG_PASSWORD: ${fn.password(10)}
+
+nodes:
+  - image: mattermost/mattermost-prod-app
+    count: 1
+    cloudlets: 16
+    nodeGroup: cp
+    skipNodeEmails: true
+    env:
+      POSTGRES_USER: webadmin
+      POSTGRES_PASSWORD:
+      POSTGRES_DB: ${globals.PG_PASSWORD}
+      DB_HOST: sqldb
+
+  - nodeType: postgresql
+    nodeGroup: sqldb
+    count: 1
+    cloudlets: 16
+    skipNodeEmails: true
+
+onInstall:
+  - log: configuration Password PG
+  - cmd[sqldb]:
+     - jem passwd set -p "${globals.PG_PASSWORD}"
+     - export PGPASSWORD='${globals.PG_PASSWORD}'; psql -U webadmin -d postgres -c "CREATE DATABASE mattermost;"
+    user: root
+
+  - cmd[cp]:
+    - touch toto
+
+success: |
+  ## Mattermost is ready
+  **URL** : ${env.domain}
