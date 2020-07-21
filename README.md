@@ -19,17 +19,17 @@ Click the **DEPLOY TO JELASTIC** button, specify your email address within the w
 If required change **Environment** Name and Destination **Region**.
 
 <p align="left">
-<img src="images/install.png" width="715">
+<img src="images/install.png" width="515">
 </p>
 
 Once the installation is completed you may proceed to the initial setup **URL** of your Chat System by pressing **Open in Browser** button in a successful installation window.  
 
 <p align="left">
-<img src="images/success.png" width="473">
+<img src="images/success.png" width="373">
 </p>
 
 Right after setup is finished, create your channels(e.g. Marketing) and start using online Chat.
 
 <p align="left">
-<img src="images/mattermost-app.png" width="715">
+<img src="images/mattermost-app.png" width="515">
 </p>
