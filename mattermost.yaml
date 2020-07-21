@@ -1,5 +1,5 @@
 type: install
-name: Mattermost
+name: Mattermost Chat Service
 id: mattermost
 categories: ["apps/dev-and-admin-tools", "apps/popular"]
 displayName: Mattermost
