@@ -79,13 +79,13 @@ For example let's create A record for custom domain **my-online-chat.jele.websit
 <img src="images/addons.png" width="515"> 
 </p>
 
-Put custom domain into respective field. And press Install.
+Put custom domain into respective field. And press **Install**.
 
 <p align="left">
 <img src="images/ssl-addon.png" width="515"> 
 </p>
 
-  4. Open you application by new URL: **https://my-online-chat.jele.website** and make sure the application is workable and traffic encrypted with valid SSL certificate.
+  4. Open your application by new URL: **https://my-online-chat.jele.website** and make sure the application is workable and traffic is encrypted with valid SSL certificate issued for custom domain.
   
 <p align="left">
 <img src="images/front-page.png" width="515"> 
