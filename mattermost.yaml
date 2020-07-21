@@ -45,7 +45,7 @@ success: |
   ### Mattermost is ready
   **URL** : [https://${env.domain}](https://${env.domain})
 
-  The instructions below can help you with further managing your Jira tracking system:
+  The instructions below can help you with further managing your online chat system:
 
   * [Attach Public IP](https://docs.jelastic.com/public-ip)
   * [Bind custom domain](https://docs.jelastic.com/custom-domains/#configure-dns)
