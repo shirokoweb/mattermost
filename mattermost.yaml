@@ -4,7 +4,7 @@ id: mattermost
 categories: ["apps/dev-and-admin-tools", "apps/popular"]
 displayName: Mattermost
 homepage: https://mattermost.com/
-logo: https://github.com/vlobzakov/mattermost/raw/master/images/mattermost-logo.png
+logo: https://github.com/vlobzakov/mattermost/raw/master/images/mattermost-logo-small.png
 description: Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies, and mostly markets itself as an open-source alternative to Slack.
 ssl: true
 
