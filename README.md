@@ -85,7 +85,7 @@ Put custom domain into respective field. And press **Install**.
 <img src="images/ssl-addon.png" width="515"> 
 </p>
 
-  4. Open your application by new URL: **https://my-online-chat.jele.website** and make sure the application is workable and traffic is encrypted with valid SSL certificate issued for custom domain.
+  4. Open your application by new URL: `https://my-online-chat.jele.website` and make sure the application is workable and traffic is encrypted with valid SSL certificate issued for custom domain.
   
 <p align="left">
 <img src="images/front-page.png" width="515"> 
