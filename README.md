@@ -13,10 +13,10 @@ Get your Jelastic account at any of available [hosting provider](https://jelasti
 Click the **DEPLOY TO JELASTIC** button, specify your email address within the widget and press **Install**.
 
 <p align="left">
-<a href="https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/mattermost/master/mattermost.yaml"><img src="images/deploy2jelastic.png" width="180">
+<a href="https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/mattermost/master/manifest.jps"><img src="images/deploy2jelastic.png" width="180">
 </p></a>  
       
-> **Note:** If you are already registered at Jelastic, you can deploy this cluster by importing the  [package manifest raw link](https://raw.githubusercontent.com/jelastic-jps/mattermost/master/mattermost.yaml).  
+> **Note:** If you are already registered at Jelastic, you can deploy this cluster by importing the  [package manifest raw link](https://raw.githubusercontent.com/jelastic-jps/mattermost/master/manifest.jps).  
 
 If required change **Environment** Name and Destination **Region**.
 
