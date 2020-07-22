@@ -1,10 +1,10 @@
 type: install
-name: Mattermost
+name: Mattermost Chat Service
 id: mattermost
 categories: ["apps/dev-and-admin-tools", "apps/popular"]
 displayName: Mattermost
-homepage: https://github.com/HidoraSwiss/mattermost
-logo: https://github.com/HidoraSwiss/mattermost/raw/master/mattermost.png
+homepage: https://mattermost.com/
+logo: https://github.com/jelastic-jps/mattermost/raw/master/images/mattermost-logo-small.png
 description: Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies, and mostly markets itself as an open-source alternative to Slack.
 ssl: true
 
@@ -42,5 +42,14 @@ onInstall:
     - nodeGroup: cp
 
 success: |
-  ## Mattermost is ready
+  ### Mattermost is ready
   **URL** : [https://${env.domain}](https://${env.domain})
+
+  The instructions below can help you with further managing your online chat system:
+
+  * [Attach Public IP](https://docs.jelastic.com/public-ip)
+  * [Bind custom domain](https://docs.jelastic.com/custom-domains/#configure-dns)
+  * [Share access to the environment](http://docs.jelastic.com/share-environment)
+  * [Adjust automatic vertical scaling settings](http://docs.jelastic.com/automatic-vertical-scaling)
+  * [Monitor the statistics](http://docs.jelastic.com/view-app-statistics) & [view log files](https://docs.jelastic.com/view-log-files)
+  * [Access environment via SSH](https://docs.jelastic.com/ssh-access)
