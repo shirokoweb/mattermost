@@ -1,5 +1,6 @@
 type: install
 name: Mattermost Chat Service
+version: 1.7
 id: mattermost
 categories: ["apps/dev-and-admin-tools", "apps/popular"]
 displayName: Mattermost
