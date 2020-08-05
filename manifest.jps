@@ -2,7 +2,7 @@ type: install
 name: Mattermost Chat Service
 version: 1.7
 id: mattermost
-categories: ["apps/dev-and-admin-tools", "apps/popular"]
+categories: ["apps/dev-and-admin-tools", "apps/popular", "apps/collaboration"]
 displayName: Mattermost
 homepage: https://mattermost.com/
 logo: https://github.com/jelastic-jps/mattermost/raw/master/images/mattermost-logo-small.png
