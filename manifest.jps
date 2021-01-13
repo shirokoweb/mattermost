@@ -2,7 +2,7 @@ type: install
 name: Mattermost Chat Service
 version: 1.7
 id: mattermost
-categories: ["apps/dev-and-admin-tools", "apps/popular"]
+categories: ["apps/dev-and-admin-tools", "apps/popular", "apps/collaboration"]
 displayName: Mattermost
 homepage: https://mattermost.com/
 logo: https://github.com/jelastic-jps/mattermost/raw/master/images/mattermost-logo-small.png
@@ -11,6 +11,7 @@ ssl: true
 
 globals:
   PG_PASSWORD: ${fn.password(10)}
+  ADMIN_PASS: ${fn.password}!
 
 nodes:
   - image: mattermost/mattermost-prod-app
@@ -33,18 +34,34 @@ onInstall:
      - jem passwd set -p "${globals.PG_PASSWORD}"
      - export PGPASSWORD='${globals.PG_PASSWORD}'; psql -U webadmin -d postgres -c "CREATE DATABASE mattermost;"
     user: root
+  - cmd[cp]: setcap cap_net_bind_service=+ep /mattermost/bin/mattermost
 
-  - cmd[cp]:
-    - sed -i "s/mmuser\:mostest/postgres\:\/\/webadmin\:${globals.PG_PASSWORD}/g" /mattermost/config/config.json
-    - sed -i "s/tcp(localhost\:3306)\/mattermost_test/\sqldb\:5432\/mattermost/g" /mattermost/config/config.json
-    - sed -i "s/charset\=utf8mb4\,utf8\&readTimeout\=30s\&writeTimeout\=30s/sslmode\=disable\&connect_timeout\=10/g" /mattermost/config/config.json
-
+  - cmd[cp]: |-
+      sed -i "s|mmuser\:mostest|webadmin\:${globals.PG_PASSWORD}|g" /mattermost/config/config.json
+      sed -i "s|\"SiteURL\"\: \"\",|\"SiteURL\"\: \"${env.url}\",|g" /mattermost/config/config.json
+      sed -i "s|@localhost/mattermost_test|@sqldb:5432/mattermost|g" /mattermost/config/config.json
+      sed -i "s|charset\=utf8mb4\,utf8\&readTimeout\=30s\&writeTimeout\=30s|sslmode\=disable\&connect_timeout\=10|g" /mattermost/config/config.json
+      sed -i "s|\"ListenAddress\"\: \":8000\",|\"ListenAddress\"\: \"\:80\",|g" /mattermost/config/config.json
+    
   - restartContainers:
     - nodeGroup: cp
+  - sleep: 5000
+    
+  - cmd[cp]: EMAIL="alexey.lazarenko@jelastic.com" && echo ${EMAIL%%@*} 
+    
+  - setGlobals:
+      username: ${response.out}
+    
+  - cmd[cp]: |-
+      EMAIL="${user.email}"
+      mattermost user create --firstname ${globals.username} --system_admin --email ${user.email} --username ${globals.username} --password ${globals.ADMIN_PASS}
 
 success: |
   ### Mattermost is ready
-  **URL** : [https://${env.domain}](https://${env.domain})
+  **URL** : [https://${env.domain}](https://${env.domain})  
+  Admin email: ${user.email}  
+  Admin username: ${globals.username}  
+  Password: ${globals.ADMIN_PASS}  
 
   The instructions below can help you with further managing your online chat system:
 
@@ -54,3 +71,5 @@ success: |
   * [Adjust automatic vertical scaling settings](http://docs.jelastic.com/automatic-vertical-scaling)
   * [Monitor the statistics](http://docs.jelastic.com/view-app-statistics) & [view log files](https://docs.jelastic.com/view-log-files)
   * [Access environment via SSH](https://docs.jelastic.com/ssh-access)
+  
+  To add custom domain name for your Joomla installation follow the steps described in our [documentation](http://docs.jelastic.com/custom-domains)
