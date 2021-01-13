@@ -15,15 +15,13 @@ globals:
 
 nodes:
   - image: mattermost/mattermost-prod-app
-    count: 1
-    cloudlets: 16
     nodeGroup: cp
+    cloudlets: 16
     skipNodeEmails: true
     diskLimit: 50G
 
   - nodeType: postgresql
     nodeGroup: sqldb
-    count: 1
     cloudlets: 16
     skipNodeEmails: true
     diskLimit: 20G
@@ -45,9 +43,9 @@ onInstall:
     
   - restartContainers:
     - nodeGroup: cp
-  - sleep: 5000
-    
-  - cmd[cp]: EMAIL="${user.email}" && echo ${EMAIL%%@*} 
+  - cmd[cp]: |-
+      timeout 300 bash -c 'while [[ "$(curl -I http://localhost -s -o /dev/null -w ''%{http_code}'')" != "405" ]]; do sleep 3; done'
+      EMAIL="${user.email}" && echo ${EMAIL%%@*}
     
   - setGlobals:
       username: ${response.out}
@@ -59,9 +57,9 @@ onInstall:
 success: |
   ### Mattermost is ready
   **URL** : [https://${env.domain}](https://${env.domain})  
-  Admin email: ${user.email}  
-  Admin username: ${globals.username}  
-  Password: ${globals.ADMIN_PASS}  
+  **Admin email** : ${user.email}  
+  **Admin username** : ${globals.username}  
+  **Password** : ${globals.ADMIN_PASS}  
 
   The instructions below can help you with further managing your online chat system:
 
