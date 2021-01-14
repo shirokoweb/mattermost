@@ -45,7 +45,7 @@ onInstall:
     - nodeGroup: cp
   - cmd[cp]: |-
       timeout 300 bash -c 'while [[ "$(curl -I http://localhost -s -o /dev/null -w ''%{http_code}'')" != "405" ]]; do sleep 3; done'
-      EMAIL="${user.email}" && echo ${EMAIL%%@*}
+      EMAIL="${user.email}" && EMAIL=${EMAIL%%@*} && echo ${EMAIL%%+*}
     
   - setGlobals:
       username: ${response.out}
