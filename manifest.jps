@@ -27,6 +27,12 @@ nodes:
     diskLimit: 20G
 
 onInstall:
+  - cmd[cp]: |-
+      echo $(echo ${globals.ADMIN_PASS} | cut -c1-4 | tr '[:lower:]' '[:upper:]')$(echo ${globals.ADMIN_PASS} | cut -c5-8 | tr '[:upper:]' '[:lower:]')$(echo $(echo ${globals.ADMIN_PASS} | cut -c 8-))
+  
+  - setGlobals:
+      ADMIN_PASS: ${response.out}
+
   - log: configuration Password PG
   - cmd[sqldb]:
      - jem passwd set -p "${globals.PG_PASSWORD}"
@@ -39,6 +45,7 @@ onInstall:
     
   - restartContainers:
     - nodeGroup: cp
+    
   - cmd[cp]: |-
       timeout 300 bash -c 'while [[ "$(curl -I http://localhost -s -o /dev/null -w ''%{http_code}'')" != "405" ]]; do sleep 3; done'
       EMAIL="${user.email}" && EMAIL=${EMAIL%%@*} && echo ${EMAIL%%+*}
