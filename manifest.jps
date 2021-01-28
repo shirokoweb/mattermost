@@ -41,8 +41,7 @@ onInstall:
       setcap cap_net_bind_service=+ep /mattermost/bin/mattermost
       sed -i  -e 's/mmuser:mostest/webadmin:${globals.PG_PASSWORD}/g'  -e  's|"SiteURL": \"\",|"SiteURL": "'${env.url}'",|g'  -e  's|localhost/mattermost_test|sqldb:5432/mattermost|g' -e  's/charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s/sslmode=disable&connect_timeout=10/g'  -e  's|"ListenAddress": ":8000",|"ListenAddress": ":80",|g' /mattermost/config/config.json
     
-  - restartContainers:
-    - nodeGroup: cp
+  - restartContainers [cp]
     
   - cmd[cp]: |-
       timeout 300 bash -c 'while [[ "$(curl -I http://localhost -s -o /dev/null -w ''%{http_code}'')" != "405" ]]; do sleep 3; done'
