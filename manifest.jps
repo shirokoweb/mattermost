@@ -69,4 +69,4 @@ success: |
   * [Monitor the statistics](http://docs.jelastic.com/view-app-statistics) & [view log files](https://docs.jelastic.com/view-log-files)
   * [Access environment via SSH](https://docs.jelastic.com/ssh-access)
   
-  To add custom domain name for your Joomla installation follow the steps described in our [documentation](http://docs.jelastic.com/custom-domains)
+  To add custom domain name for your Mattermost installation follow the steps described in our [documentation](http://docs.jelastic.com/custom-domains)
