@@ -31,7 +31,7 @@ onInstall:
   - setGlobals:
       ADMIN_PASS: ${response.password}
 
-  - log: configuration Password PG
+  - log: PostgreSQL password configuration
   - cmd[sqldb]:
      - jem passwd set -p "${globals.PG_PASSWORD}"
      - export PGPASSWORD='${globals.PG_PASSWORD}'; psql -U webadmin -d postgres -c "CREATE DATABASE mattermost;"
