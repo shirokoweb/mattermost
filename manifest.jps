@@ -28,9 +28,9 @@ nodes:
 onInstall:
   - generatePassword
   - createDB
-  - installActions
+  - configureMattermost
 
-onAfterRedeployContainer [cp]: installActions
+onAfterRedeployContainer [cp]: configureMattermost
 
 actions:
   generatePassword:
@@ -44,7 +44,7 @@ actions:
        - export PGPASSWORD='${globals.PG_PASSWORD}'; psql -U webadmin -d postgres -c "SELECT 1 FROM pg_database WHERE datname = 'mattermost'" | grep -q 1 || psql -U webadmin -d postgres -c "CREATE DATABASE mattermost;"
       user: root
   
-  installActions:
+  configureMattermost:
   - log: PostgreSQL password configuration
   - cmd[cp]: |-
       setcap cap_net_bind_service=+ep /mattermost/bin/mattermost
