@@ -22,7 +22,6 @@ nodes:
   - nodeType: postgresql
     nodeGroup: sqldb
     cloudlets: 16
-    skipNodeEmails: true
     diskLimit: 20G
 
 onInstall:
