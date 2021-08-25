@@ -9,9 +9,6 @@ logo: https://github.com/jelastic-jps/mattermost/raw/master/images/mattermost-lo
 description: Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies, and mostly markets itself as an open-source alternative to Slack.
 ssl: true
 
-globals:
-  PG_PASSWORD: ${fn.password(10)}
-
 nodes:
   - image: mattermost/mattermost-prod-app
     nodeGroup: cp
@@ -36,6 +33,7 @@ actions:
     - script: "return {result: 0, password: '${fn.password(4)}'.toUpperCase() + '${fn.password(4)}'.toLowerCase() + '${fn.random(10)}' + '~!@#$%^&*()'['${fn.random(10)}'] };"
     - setGlobals:
         ADMIN_PASS: ${response.password}
+        PG_PASSWORD: ${nodes.sqldb.password}
    
   createDB:
     - cmd[sqldb]:
