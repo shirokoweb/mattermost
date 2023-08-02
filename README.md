@@ -8,20 +8,13 @@ Mattermost is positioned as an open alternative to the Slack communications syst
 
 ## Installation
 
-Get your Jelastic account at any of available [hosting provider](https://jelastic.cloud/).
-
-Click the **DEPLOY TO JELASTIC** button, specify your email address within the widget and press **Install**.
-
-<p align="left">
-<a href="https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/mattermost/master/manifest.jps"><img src="images/deploy2jelastic.png" width="180">
-</p></a>  
-      
-> **Note:** If you are already registered at Jelastic, you can deploy this cluster by importing the  [package manifest raw link](https://raw.githubusercontent.com/jelastic-jps/mattermost/master/manifest.jps).  
+Import the [package manifest raw link](https://raw.githubusercontent.com/shirokoweb/mattermost/master/manifest.jps) to your Jelastic environment.  
 
 If required change **Environment** Name and Destination **Region**.
 
 <p align="left">
-<img src="images/install.png" width="515">
+<img src="![image](https://github.com/shirokoweb/mattermost/assets/6638982/3701c44c-922f-4402-a3e3-a40cd48314e4)
+" width="515">
 </p>
 
 Once the installation is completed you may proceed to the initial setup **URL** of your Chat System by pressing **Open in Browser** button in a successful installation window.  
