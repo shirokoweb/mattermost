@@ -9,13 +9,8 @@ logo: https://github.com/jelastic-jps/mattermost/raw/master/images/mattermost-lo
 description: Mattermost is an open-source, self-hostable online chat service with file sharing, search, and integrations. It is designed as an internal chat for organisations and companies, and mostly markets itself as an open-source alternative to Slack.
 ssl: true
 
-baseUrl: https://raw.githubusercontent.com/jelastic-jps/mattermost/master/
-
-mixins:
-- configs/vers.yaml
-
 nodes:
-  - image: mattermost/mattermost-team-edition:${globals.version_mattermost}
+  - image: mattermost/mattermost-team-edition:release-8.0
     nodeGroup: cp
     cloudlets: 16
     skipNodeEmails: true
